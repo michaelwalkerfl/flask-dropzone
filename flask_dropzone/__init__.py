@@ -287,9 +287,9 @@ Dropzone.options.myDropzone = {
 
         enable_csrf = kwargs.get('enable_csrf', current_app.config['DROPZONE_ENABLE_CSRF'])
         if enable_csrf:
-            if 'csrf' not in current_app.extensions:
-                raise RuntimeError("CSRFProtect is not initialized. It's required to enable CSRF protect, \
-                    see docs for more details.")
+            #if 'csrf' not in current_app.extensions:
+            #    raise RuntimeError("CSRFProtect is not initialized. It's required to enable CSRF protect, \
+            #        see docs for more details.")
             csrf_token = render_template_string('{{ csrf_token() }}')
             custom_options += 'headers: {"X-CSRF-Token": "%s"},' % csrf_token
 
@@ -418,7 +418,7 @@ class Dropzone(object):
         # When set to ``True``, it will add a csrf_token hidden field in upload form.
         # You have to install Flask-WTF to make it work properly, see details in docs.
         # .. versionadded:: 1.4.2
-        app.config.setdefault('DROPZONE_ENABLE_CSRF', False)
+        app.config.setdefault('DROPZONE_ENABLE_CSRF', True)
 
         # Add support to upload files when button was clicked.
         # .. versionadded:: 1.5.0
